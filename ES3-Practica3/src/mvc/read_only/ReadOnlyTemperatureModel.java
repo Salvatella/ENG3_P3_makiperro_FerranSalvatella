@@ -51,6 +51,7 @@ public class ReadOnlyTemperatureModel implements Runnable, TemperatureModelInter
                 currentTemperature += rand.nextInt(-1, 2);
                 System.out.println("Current temperature " + currentTemperature); //This is left for easier debugging
                 //TODO: View should be updated
+                
             } catch (Exception e) {
 
             }
