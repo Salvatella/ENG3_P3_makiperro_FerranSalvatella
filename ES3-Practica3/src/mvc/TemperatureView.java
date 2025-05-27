@@ -14,6 +14,10 @@ public class TemperatureView implements ActionListener, Observer {
 
     //Model
     private TemperatureModelInterface model;
+//DUBTE: the model is not used directly in this class, 
+//but the view it gets the information via update() method 
+// of the Observer interface, so it is not necessary .
+
     //Controller
     private TemperatureControllerInterface controller;
    
@@ -36,8 +40,11 @@ public class TemperatureView implements ActionListener, Observer {
     private JLabel currentTemp; //Displays current temperature
 
 
-    public TemperatureView(TemperatureControllerInterface controller, TemperatureModelInterface model, Observer observer) {
+    public TemperatureView(TemperatureControllerInterface controller, TemperatureModelInterface model) {
         /*TODO: Complete this constructor. Remember that the view is an observer of the model.*/
+        this.controller = controller;
+        this.model = model;
+        
     }
 
     public void createView() {
@@ -151,6 +158,7 @@ public class TemperatureView implements ActionListener, Observer {
     /*TODO: Add public methods to enable and disable UI elements
        (https://docs.oracle.com/en/java/javase/22/docs/api/java.desktop/javax/swing/JComponent.html#setEnabled(boolean))*/
     public void enableUI() {
+
         this.tempTextField.setEnabled(true);
         this.setTempButton.setEnabled(true);
         this.increaseTempButton.setEnabled(true);
@@ -163,6 +171,20 @@ public class TemperatureView implements ActionListener, Observer {
         
     }
 
+    public void disableUI() {
+
+        this.tempTextField.setEnabled(false);
+        this.setTempButton.setEnabled(false);
+        this.increaseTempButton.setEnabled(false);
+        this.decreaseTempButton.setEnabled(false);
+        this.currentTempLabel.setEnabled(false);
+        this.currentTemp.setEnabled(false);
+        this.tempLabel.setEnabled(false);
+        this.tempLabelView.setEnabled(false);
+        this.tempOutputLabel.setEnabled(false);
+
+    }
+
     public void actionPerformed(ActionEvent event) {
         /*TODO: Complete this method to ensure that it processes the buttons clicked by the user
         *  https://docs.oracle.com/en/java/javase/22/docs/api/java.base/java/util/EventObject.html#getSource()
@@ -170,7 +192,15 @@ public class TemperatureView implements ActionListener, Observer {
         * - decreaseTempButton
         * - setTempButton
         * */
+        if (event.getSource() == increaseTempButton) {
+            controller.increaseTemperature();
+        } else if (event.getSource() == decreaseTempButton) {
+            controller.decreaseTemperature();
+        } else if (event.getSource() == setTempButton) {
+            int temp = Integer.parseInt(tempTextField.getText());
+            controller.setTemperature(temp);
         }
+    }
 
     @Override
     public void update(int currentTemperature, int targetTemperature) {

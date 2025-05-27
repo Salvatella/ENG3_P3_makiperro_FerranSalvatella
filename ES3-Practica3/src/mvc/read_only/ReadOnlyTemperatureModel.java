@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import mvc.Observer;
-import mvc.control_read.Subject;
+import mvc.Subject;
 import mvc.control_read.TemperatureModelInterface;
 
 public class ReadOnlyTemperatureModel implements Runnable, TemperatureModelInterface, Subject {
@@ -30,6 +30,8 @@ public class ReadOnlyTemperatureModel implements Runnable, TemperatureModelInter
         thread.start();
         stopThread = false;
         //TODO: may require additional code
+        notifyObservers(currentTemperature, 0); // Assuming target temperature is 0 for now
+
     }
 
     @Override

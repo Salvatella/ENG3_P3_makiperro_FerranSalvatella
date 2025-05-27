@@ -12,7 +12,6 @@ public class StandardTemperatureController implements TemperatureControllerInter
         /*TODO: Create view and assign class attributes*/
         this.model = model;
         this.view = new TemperatureView(this, model);
-        this.model.addObserver(view);
         view.createView();
         view.createControls();
         /*TODO: Prepare UI */

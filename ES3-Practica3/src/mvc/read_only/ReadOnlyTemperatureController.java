@@ -1,12 +1,12 @@
 package mvc.read_only;
 
 import mvc.Observer;
+import mvc.Subject;
 import mvc.TemperatureView;
-import mvc.control_read.Subject;
 import mvc.control_read.TemperatureControllerInterface;
 import mvc.control_read.TemperatureModelInterface;
 
-public class ReadOnlyTemperatureController implements TemperatureControllerInterface, Subject {
+public class ReadOnlyTemperatureController implements TemperatureControllerInterface {
     /*TODO: Ensure that it implements the right interface*/
 
     private TemperatureView view;
@@ -15,9 +15,16 @@ public class ReadOnlyTemperatureController implements TemperatureControllerInter
     public ReadOnlyTemperatureController(TemperatureModelInterface tempModel){
        /*TODO: Create view and assign class attributes*/
         this.model = tempModel;
-        this.view = new TemperatureView(this, model, this);
-        view.createControls();
+        this.view = new TemperatureView(this, model);
+
         /*TODO: Prepare UI */
+        view.createView();
+        view.createControls();
+
+    }
+
+    public TemperatureView getView() {
+        return view;
     }
 
     @Override
@@ -51,41 +58,6 @@ public class ReadOnlyTemperatureController implements TemperatureControllerInter
         throw new UnsupportedOperationException("Unimplemented method 'setTemperature'");
     }
 
-    @Override
-    public void registerObserver(Observer observer) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'registerObserver'");
-    }
-
-    @Override
-    public void removeObserver(Observer observer) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeObserver'");
-    }
-
-    @Override
-    public void notifyObservers(int currentTemperature, int targetTemperature) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'notifyObservers'");
-    }
-
-    @Override
-    public void setTargetTemperature(int temp) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setTargetTemperature'");
-    }
-
-    @Override
-    public int getTargetTemperature() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getTargetTemperature'");
-    }
-
-    @Override
-    public int getCurrentTemperature() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getCurrentTemperature'");
-    }
 
     /*TODO: Complete with the interface methods. Some tips below.*/
 

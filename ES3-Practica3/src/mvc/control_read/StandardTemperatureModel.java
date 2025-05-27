@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import mvc.Observer;
+import mvc.Subject;
 
 public class StandardTemperatureModel implements Runnable, TemperatureModelInterface, Subject {
     /*TODO: Ensure that  StandardTemperatureModel implements the corresponding interface (other than Runnable)*/

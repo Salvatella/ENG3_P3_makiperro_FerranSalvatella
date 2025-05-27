@@ -1,6 +1,4 @@
-package mvc.control_read;
-
-import mvc.Observer;
+package mvc;
 
 public interface Subject {
 
